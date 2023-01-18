@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% block title %}<title> Title </title>{% endblock %}
+    <meta charset="UTF-8">
+
+</head>
+<body>
+
+<div class="container-fluid">
+
+    <div class="row">
+
+        {% block sidebar %}
+            <ul class="sidebar-nav">
+                <li><a href="{% url 'index' %}"> Home </a></li>
+                {% if user.is_authenticated %}
+                    <li>User: {{ user.get_username }}</li>
+                    <li><a href="{% url 'logout' %}">Logout</a></li>
+                {% else %}
+                    <li><a href="{% url 'login' %}">Login</a></li>
+                {% endif %}
+            </ul>
+        {% endblock %}
+
+        {% block content %}
+            <h1>Welcome</h1>
+            {% if user.is_authenticated %}
+                <h1>{{ user.get_username }}</h1>
+                <h2>Test: {{ num_test }}</h2>
+            {% else %}
+                <p>Please login</p>
+            {% endif %}
+
+        {% endblock %}
+    </div>
+</div>
+</body>
+</html>
