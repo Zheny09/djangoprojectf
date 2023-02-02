@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/4.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.1/ref/settings/
 """
-
+import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -25,6 +25,8 @@ SECRET_KEY = 'django-insecure-^6_a2w$5t@^2zx7nd!e%i_&k4q!hhdn=rtrholw=f3^$%kan*r
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+BR = 'sdf'
+
 ALLOWED_HOSTS = []
 
 LOGIN_REDIRECT_URL = '/'
@@ -32,13 +34,15 @@ LOGIN_REDIRECT_URL = '/'
 # Application definition
 
 INSTALLED_APPS = [
+    'hello.apps.HelloConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'hello.apps.HelloConfig',
+
+
 ]
 
 MIDDLEWARE = [
@@ -56,7 +60,7 @@ ROOT_URLCONF = 'djangoProject1.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'templates']
+        'DIRS': [os.path.join(BASE_DIR, 'templates'), ]
         ,
         'APP_DIRS': True,
         'OPTIONS': {
@@ -65,6 +69,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'hello.context_processor.admin',
             ],
         },
     },

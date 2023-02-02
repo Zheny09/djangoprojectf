@@ -17,6 +17,7 @@
             {% block sidebar %}
                 <ul class="sidebar-nav">
                     <li><a href="{% url 'index' %}"> Home </a></li>
+                    <li><a href="{% url 'admin' %}"> admin </a></li>
                     {% if user.is_authenticated %}
                         <li>User: {{ user.get_username }}</li>
                         <li><a href="{% url 'logout' %}">Logout</a></li>
@@ -28,11 +29,12 @@
         </div>
 
         <div class="col-sm-10 ">
-            {% block content %}
+            {% block content_subtitle %}
                 <h1>Welcome</h1>
                 {% if user.is_authenticated %}
                     <h1>{{ user.get_username }}</h1>
                     <h2>Test: {{ num_test }}</h2>
+                    <h2>DEBUG: {{ pr }}</h2>
                 {% else %}
                     <p>Please login</p>
                 {% endif %}
